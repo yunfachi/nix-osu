@@ -1,0 +1,32 @@
+name: Update packages
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Run update scripts
+        run: |
+          pkgs/osu-lazer-bin/update.sh
+
+      - name: Commit
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "ci: update all packages"
