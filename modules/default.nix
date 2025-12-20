@@ -19,15 +19,38 @@
 
           package = allowNull (
             packageOption (
-              self.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin.overrideAttrs (
-                _: _:
+              self.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin.override (
                 lib.optionalAttrs (cfg.releaseStream != null) {
                   inherit (cfg) releaseStream;
+                }
+                // {
+                  extraShellArgs =
+                    lib.optionals (cfg.proxy.http != null) [
+                      "--set"
+                      "http_proxy"
+                      cfg.proxy.http
+                    ]
+                    ++ lib.optionals (cfg.proxy.https != null) [
+                      "--set"
+                      "https_proxy"
+                      cfg.proxy.https
+                    ]
+                    ++ lib.optionals (cfg.proxy.socks != null) [
+                      "--set"
+                      "all_proxy"
+                      cfg.proxy.socks
+                    ];
                 }
               )
             )
           );
           releaseStream = allowNull (enumOption [ "lazer" "tachyon" ] null);
+
+          proxy = {
+            http = allowNull (strOption null);
+            https = allowNull (strOption cfg.proxy.http);
+            socks = allowNull (strOption null);
+          };
         };
 
       home.ifEnabled =
