@@ -9,6 +9,7 @@
   # "tachyon" means using the latest release, NOT JUST the latest Tachyon release.
   # Sometimes, Lazer is newer than Tachyon, and that's how the osu! update check works.
   releaseStream ? "tachyon",
+  extraShellArgs ? [ ],
   ...
 }:
 let
@@ -82,7 +83,8 @@ if stdenvNoCC.hostPlatform.isDarwin then
         mkdir -p "$OSU_WRAPPER/MacOS"
         cp -r "$OSU_CONTENTS/Info.plist" "$OSU_CONTENTS/Resources" "$OSU_WRAPPER"
         cp -r "osu!.app" "$OSU_WRAPPER/Resources/osu-wrapped.app"
-        makeWrapper "$OSU_WRAPPER/Resources/osu-wrapped.app/Contents/MacOS/osu!" "$OSU_WRAPPER/MacOS/osu!" --set OSU_EXTERNAL_UPDATE_PROVIDER 1
+        makeWrapper "$OSU_WRAPPER/Resources/osu-wrapped.app/Contents/MacOS/osu!" "$OSU_WRAPPER/MacOS/osu!" ${lib.escapeShellArgs extraShellArgs} \
+          --set OSU_EXTERNAL_UPDATE_PROVIDER 1
         runHook postInstall
       '';
     }
@@ -107,7 +109,7 @@ else
           . ${makeWrapper}/nix-support/setup-hook
           mv -v $out/bin/${self.pname} $out/bin/osu!
 
-          wrapProgram $out/bin/osu! \
+          wrapProgram $out/bin/osu! ${lib.escapeShellArgs extraShellArgs} \
             ${lib.optionalString nativeWayland "--set SDL_VIDEODRIVER wayland"} \
             --set OSU_EXTERNAL_UPDATE_PROVIDER 1
 
