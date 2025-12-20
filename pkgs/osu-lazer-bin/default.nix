@@ -8,7 +8,7 @@
   nativeWayland ? true,
   # "tachyon" means using the latest release, NOT JUST the latest Tachyon release.
   # Sometimes, Lazer is newer than Tachyon, and that's how the osu! update check works.
-  releaseStream ? "tachyon",
+  releaseStream ? "lazer",
   extraShellArgs ? [ ],
   ...
 }:
