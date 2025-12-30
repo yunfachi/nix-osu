@@ -1,5 +1,7 @@
 { lib, delib, ... }:
 delib.mkLib "self" (self: {
+  filterNullAttrs = lib.filterAttrsRecursive (name: value: value != null);
+
   generators.toOsuINI =
     let
       mkKeyValue =
@@ -37,7 +39,7 @@ delib.mkLib "self" (self: {
         in
         k: v: "${lib.escape [ "=" ] k}=${mkValueString v}";
 
-      mkLine = k: v: lib.optionalString (v != null) (mkKeyValue k v + "\n");
+      mkLine = k: v: mkKeyValue k v + "\n";
       mkLines = k: v: [ (mkLine k v) ];
     in
     attrs: lib.concatStrings (lib.concatLists (lib.mapAttrsToList mkLines attrs));

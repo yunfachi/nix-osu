@@ -13,8 +13,16 @@
           pathOption (
             builtins.toFile "game_overrides.ini" (
               delib.nix-osu.generators.toOsuINI (
-                {
-                  ReleaseStream = if cfg.releaseStream != null then {lazer = "Lazer"; tachyon = "Tachyon";}.${cfg.releaseStream} else null;
+                delib.nix-osu.filterNullAttrs {
+                  ReleaseStream =
+                    if cfg.releaseStream != null then
+                      {
+                        lazer = "Lazer";
+                        tachyon = "Tachyon";
+                      }
+                      .${cfg.releaseStream}
+                    else
+                      null;
 
                   Prefer24HourTime = cfg.settings.prefer24HourTime;
 

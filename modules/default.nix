@@ -64,41 +64,43 @@
 
             ${lib.getExe pkgs.crudini} --merge framework.ini < ${cfg.frameworkIniOverridesFile}
             ${lib.getExe pkgs.crudini} --merge game.ini < ${cfg.gameIniOverridesFile}
-            ${pkgs.writers.writePython3 "mergeInputJsonOverridesFileIntoInputJson.py" { } ''
-              import json
-              import sys
+            ${
+              pkgs.writers.writePython3 "mergeInputJsonOverridesFileIntoInputJson.py" { } ''
+                import json
+                import sys
 
 
-              def deep_merge(target, patch):
-                  for key, value in patch.items():
-                      if key in target and isinstance(target[key], dict) and \
-                                           isinstance(value, dict):
-                          deep_merge(target[key], value)
-                      else:
-                          target[key] = value
+                def deep_merge(target, patch):
+                    for key, value in patch.items():
+                        if key in target and isinstance(target[key], dict) and \
+                                             isinstance(value, dict):
+                            deep_merge(target[key], value)
+                        else:
+                            target[key] = value
 
 
-              try:
-                  with open("input.json", "r", encoding="utf-8") as f:
-                      config = json.load(f)
-              except FileNotFoundError:
-                  config = {}
+                try:
+                    with open("input.json", "r", encoding="utf-8") as f:
+                        config = json.load(f)
+                except FileNotFoundError:
+                    config = {}
 
-              with open(sys.argv[1], "r", encoding="utf-8") as f:
-                  overrides = json.load(f)
+                with open(sys.argv[1], "r", encoding="utf-8") as f:
+                    overrides = json.load(f)
 
-              handlers = config.get("InputHandlers", [])
-              handlers_by_type = {handler["$type"]: handler for handler in handlers}
+                handlers = config.get("InputHandlers", [])
+                handlers_by_type = {handler["$type"]: handler for handler in handlers}
 
-              for handler_type, new_fields in overrides.items():
-                  if handler_type in handlers_by_type:
-                      deep_merge(handlers_by_type[handler_type], new_fields)
-                  else:
-                      handlers.append({"$type": handler_type, **new_fields})
-  
-              with open("input.json", "w", encoding="utf-8") as f:
-                  json.dump(config, f, indent=2, ensure_ascii=False)
-            ''} ${cfg.inputJsonOverridesFile}
+                for handler_type, new_fields in overrides.items():
+                    if handler_type in handlers_by_type:
+                        deep_merge(handlers_by_type[handler_type], new_fields)
+                    else:
+                        handlers.append({"$type": handler_type, **new_fields})
+
+                with open("input.json", "w", encoding="utf-8") as f:
+                    json.dump(config, f, indent=2, ensure_ascii=False)
+              ''
+            } ${cfg.inputJsonOverridesFile}
           '';
         };
     };
