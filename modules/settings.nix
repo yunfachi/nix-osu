@@ -7,6 +7,39 @@
       options = {
         prefer24HourTime = allowNull (boolOption null);
 
+        input = {
+          mouse = {
+            enable = allowNull (boolOption null);
+            highPrecision = allowNull (boolOption null);
+            sensitivity = allowNull (steppedNumberBetweenOption 0.1 10 0.01 null);
+          };
+
+          tablet = {
+            enable = allowNull (boolOption null);
+            rotation = allowNull (intBetweenOption 0 360 null);
+            areaOffset = {
+              x = allowNull (numberOption null);
+              y = allowNull (numberOption null);
+            };
+            areaSize = {
+              x = allowNull (numberOption null);
+              y = allowNull (numberOption null);
+            };
+            pressureThreshold = allowNull (intBetweenOption 0 100 null);
+          };
+
+          joystick = {
+            enable = allowNull (boolOption null);
+            deadzoneThreshold = allowNull (steppedNumberBetweenOption 0 95 0.5 null);
+          };
+
+          keyboard.enable = allowNull (boolOption null);
+
+          touch.enable = allowNull (boolOption null);
+
+          midi.enable = allowNull (boolOption null);
+        };
+
         # TODO: skin
         gameplay = {
           background = {
