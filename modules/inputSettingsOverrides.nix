@@ -13,9 +13,9 @@
           pathOption (
             builtins.toFile "input_overrides.json" (
               builtins.toJSON (
-                lib.recursiveUpdate {
                   "osu.Framework.Input.Handlers.Keyboard.KeyboardHandler, osu.Framework" = {
 
+                lib.recursiveUpdate (delib.nix-osu.filterNullAttrs {
                   };
                   "osu.Framework.Input.Handlers.Tablet.OpenTabletDriverHandler, osu.Framework" = {
 
@@ -32,7 +32,7 @@
                   "osu.Framework.Input.Handlers.Midi.MidiHandler, osu.Framework" = {
 
                   };
-                } cfg.extraInputSettings
+                }) cfg.extraInputSettings
               )
             )
           );

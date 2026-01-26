@@ -9,9 +9,8 @@
         frameworkIniOverridesFile = pathOption (
           builtins.toFile "framework_overrides.ini" (
             delib.nix-osu.generators.toOsuINI (
-              {
-
-              }
+              (delib.nix-osu.filterNullAttrs {
+              })
               // cfg.extraFrameworkSettings
             )
           )
