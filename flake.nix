@@ -76,7 +76,7 @@
                     { _module.args.pkgs = pkgs; }
                   ];
                   urlPrefix = "https://github.com/yunfachi/nix-osu/blob/master/";
-                  baseHref = "/nix-osu/";
+                  baseHref = "/";
                   title = "Nix-Osu Search";
                 };
               };
