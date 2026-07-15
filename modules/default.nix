@@ -54,7 +54,7 @@
         };
 
       home.ifEnabled =
-        { lib, pkgs, config, ... }:
+        { lib, pkgs, ... }:
         {
           home.packages = lib.optionals (cfg.package != null) [ cfg.package ];
 
