@@ -59,14 +59,9 @@
           home.packages = lib.optionals (cfg.package != null) [ cfg.package ];
 
           home.activation.nix-osu = 
-            let
-              osuDir = if config.xdg.enable 
-                then "${config.xdg.dataHome}/osu" 
-                else "${config.home.homeDirectory}/.local/share/osu";
-            in
             lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-            mkdir -p "${osuDir}"
-            cd "${osuDir}"
+            mkdir -p "${cfg.dataDir}"
+            cd "${cfg.dataDir}"
 
             ${lib.getExe pkgs.crudini} --merge framework.ini < ${cfg.frameworkIniOverridesFile}
             ${lib.getExe pkgs.crudini} --merge game.ini < ${cfg.gameIniOverridesFile}
