@@ -50,6 +50,7 @@
             http = allowNull (strOption null);
             https = allowNull (strOption cfg.proxy.http);
             socks = allowNull (strOption null);
+          };
           dataDir = pathOption "${config.xdg.dataHome}/osu";
         };
 
