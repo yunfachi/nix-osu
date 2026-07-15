@@ -59,8 +59,7 @@
         {
           home.packages = lib.optionals (cfg.package != null) [ cfg.package ];
 
-          home.activation.nix-osu = 
-            lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          home.activation.nix-osu = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
             mkdir -p "${cfg.dataDir}"
             cd "${cfg.dataDir}"
 
