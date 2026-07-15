@@ -13,7 +13,7 @@
     {
       options =
         with delib;
-        { pkgs, ... }:
+        { pkgs, config, ... }:
         {
           enable = boolOption false;
 
