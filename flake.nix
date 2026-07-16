@@ -67,6 +67,11 @@
           perSystem =
             { pkgs, system, ... }:
             {
+              _module.args.pkgs = import inputs.nixpkgs {
+                inherit system;
+                config.allowUnfree = true;
+              };
+
               packages = {
                 osu-lazer-bin = pkgs.callPackage ./pkgs/osu-lazer-bin { };
 
