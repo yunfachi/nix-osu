@@ -53,6 +53,8 @@
           };
 
           dataDir = defaultText (pathOption "${config.xdg.dataHome}/osu") (lib.literalExpression "\${config.xdg.dataHome}/osu");
+
+          tokenFile = allowNull (pathOption null);
         };
 
       home.ifEnabled =
@@ -66,6 +68,9 @@
 
             ${lib.getExe pkgs.crudini} --merge framework.ini < ${cfg.frameworkIniOverridesFile}
             ${lib.getExe pkgs.crudini} --merge game.ini < ${cfg.gameIniOverridesFile}
+            ${lib.optionalString (cfg.tokenFile != null) ''
+              ${lib.getExe pkgs.crudini} --set game.ini "" Token "$(cat ${cfg.tokenFile})"
+            ''}
             ${
               pkgs.writers.writePython3 "mergeInputJsonOverridesFileIntoInputJson.py" { } ''
                 import json
