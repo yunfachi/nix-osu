@@ -8,10 +8,10 @@
     "appimage-hash": "sha256-0K/dyvIwrlBzcexYDCCilNknJdEZja1OTfAotP6MvjY="
   },
   "tachyon": {
-    "version": "2026.911.0-tachyon",
-    "published-at": "2026-09-11T14:30:20Z",
-    "darwin-apple-silicon-hash": "sha256-qUgNcmKx1+qTL3Lh/r29FXR14KNnQrN+c3XLu3QYCcA=",
-    "darwin-intel-hash": "sha256-4UpN8r2nt7Pnppvp3uQZgcaxTIYmhasa5fQiSyesh6s=",
-    "appimage-hash": "sha256-dBzpN5UcyPXYf/QheiTDYOSLCJc71Nou47dF0adulN8="
+    "version": "2026.918.0-tachyon",
+    "published-at": "2026-09-18T02:19:38Z",
+    "darwin-apple-silicon-hash": "sha256-gZC0KSWF+bS8l9dkIqfgSg79IZQwx90++iatZqBz3fY=",
+    "darwin-intel-hash": "sha256-4WptQVG4iYIHgH4EQo358HcXqeFTRq7yb6+3j7x4Ydk=",
+    "appimage-hash": "sha256-4wwtNWDqghwuJyvKz8pXuy0UfKAlwamV7UW82im6CFQ="
   }
 }
