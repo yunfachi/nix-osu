@@ -69,7 +69,9 @@
             ${lib.getExe pkgs.crudini} --merge framework.ini < ${cfg.frameworkIniOverridesFile}
             ${lib.getExe pkgs.crudini} --merge game.ini < ${cfg.gameIniOverridesFile}
             ${lib.optionalString (cfg.tokenFile != null) ''
-              ${lib.getExe pkgs.crudini} --set game.ini "" Token "$(cat ${cfg.tokenFile})"
+              if [ -z "$(${lib.getExe pkgs.crudini} --get game.ini "" Token 2>/dev/null)" ]; then
+                ${lib.getExe pkgs.crudini} --set game.ini "" Token "$(cat ${cfg.tokenFile})"
+              fi
             ''}
             ${
               pkgs.writers.writePython3 "mergeInputJsonOverridesFileIntoInputJson.py" { } ''
