@@ -1,17 +1,17 @@
 {
   "latest": "tachyon",
   "lazer": {
-    "version": "2026.921.0-lazer",
-    "published-at": "2026-09-21T05:32:11Z",
-    "darwin-apple-silicon-hash": "sha256-Rw9hWBorp9S70Ufvr5HPujAcJPRMnB4d4mdg1kUjgIc=",
-    "darwin-intel-hash": "sha256-+k1NYwaDjloEHML6/OZuYuafWGqsWlozBjL7z6Pd90k=",
-    "appimage-hash": "sha256-3O2UY7UBAJyV2+2JGr0vCswu+4TuQzb1scw7fASl/H0="
+    "version": "2026.1005.0-lazer",
+    "published-at": "2026-10-05T07:39:28Z",
+    "darwin-apple-silicon-hash": "sha256-7pwsMiQlP3zSPSgP6L89m6HhYYn2J/oh8myfv3iqcWw=",
+    "darwin-intel-hash": "sha256-0nGG6Xj1PQ16Hue7SI+JLvwZOosperqaSE62F4xi0E4=",
+    "appimage-hash": "sha256-KEEI5lNzqDOb7spA4sFLFSjBd71s4eshQHY5+OUI2i4="
   },
   "tachyon": {
-    "version": "2026.1004.0-tachyon",
-    "published-at": "2026-10-04T23:28:59Z",
-    "darwin-apple-silicon-hash": "sha256-zNOoFp9oTQlx7VYYWc98OyHRfo/LpEydvDX3xmQkW+Y=",
-    "darwin-intel-hash": "sha256-R/SOoRXzsciObOc8KcfXy+5l5Ek4oIgm2kqWFhC+xRI=",
-    "appimage-hash": "sha256-4NDGeV7f1AxI/xUJnlRL5MGMDzoxu3O0GypoIv27ztE="
+    "version": "2026.1005.1-tachyon",
+    "published-at": "2026-10-05T09:32:20Z",
+    "darwin-apple-silicon-hash": "sha256-N4bT+Vz3yhP5la8VnP+osqmOA6HIyFY7WwHoM67laWg=",
+    "darwin-intel-hash": "sha256-clgx+daVNInyLKWQju5uVGWYaXg2pstqMp8rPj7PztY=",
+    "appimage-hash": "sha256-dC/R7h0OkWGrRhiK5G5lgFfghJouCNKQuW+Lac9UR24="
   }
 }
